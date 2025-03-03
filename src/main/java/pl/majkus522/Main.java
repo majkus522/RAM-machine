@@ -18,6 +18,7 @@ public class Main
 	static ArrayList<Integer> outputTape = new ArrayList<Integer>();
 	static ArrayList<Integer> registries = new ArrayList<Integer>();
 	static int line;
+	static int inputAddr = -1;
 
 	public static void main(String[] args)
 	{
@@ -55,13 +56,14 @@ public class Main
 		}
 	}
 
-	public static int readInput(int addr) throws RuntimeError
+	public static int readInput() throws RuntimeError
 	{
-		if (addr < 0)
+		if (inputAddr < 0)
 			throw new RuntimeError("Registry index can't be lesser than 0", line);
-		if (addr >= inputTape.size())
+		inputAddr++;
+		if (inputAddr >= inputTape.size())
 			return 0;
-		return inputTape.get(addr);
+		return inputTape.get(inputAddr);
 	}
 
 	public static int getRegistry(int addr) throws RuntimeError
