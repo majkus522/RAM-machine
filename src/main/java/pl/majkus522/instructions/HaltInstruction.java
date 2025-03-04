@@ -1,17 +1,19 @@
 package pl.majkus522.instructions;
 
-import org.jetbrains.annotations.Nullable;
+import pl.majkus522.error.InterpreterError;
 
 public class HaltInstruction extends BaseInstruction
 {
-	public HaltInstruction(@Nullable String address)
+	public HaltInstruction(String address) throws InterpreterError
 	{
 		super("");
+		if (!address.isEmpty())
+			throw new InterpreterError("HALT command doesn't accept any operands");
 	}
 
 	@Override
 	public void execute()
 	{
-		System.out.println("halt " + toString());
+		System.out.println("halt " + this);
 	}
 }

@@ -1,19 +1,19 @@
 package pl.majkus522.error;
 
+import pl.majkus522.MachineController;
+
 public class RuntimeError extends Exception
 {
 	final String message;
-	final int line;
 
-	public RuntimeError(String message, int line)
+	public RuntimeError(String message)
 	{
 		this.message = message;
-		this.line = line;
 	}
 
 	@Override
 	public String getMessage()
 	{
-		return message + "\r\nLine: " + line;
+		return message + "\r\nLine: " + MachineController.lineIndex;
 	}
 }

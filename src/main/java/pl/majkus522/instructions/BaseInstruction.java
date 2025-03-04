@@ -1,7 +1,8 @@
 package pl.majkus522.instructions;
 
 import pl.majkus522.AddressType;
-import pl.majkus522.Main;
+import pl.majkus522.MachineController;
+import pl.majkus522.error.InterpreterError;
 import pl.majkus522.error.RuntimeError;
 
 public abstract class BaseInstruction
@@ -9,9 +10,9 @@ public abstract class BaseInstruction
 	protected AddressType type;
 	protected int address;
 
-	public BaseInstruction(String address)
+	public BaseInstruction(String address) throws InterpreterError
 	{
-		if (address.length() == 0)
+		if (address.isEmpty())
 			return;
 		int index = 1;
 		switch (address.charAt(0))
@@ -29,7 +30,14 @@ public abstract class BaseInstruction
 				index = 0;
 				break;
 		}
-		this.address = Integer.parseInt(address.substring(index));
+		try
+		{
+			this.address = Integer.parseInt(address.substring(index));
+		}
+		catch (NumberFormatException e)
+		{
+			throw new InterpreterError("Not a number");
+		}
 	}
 
 	public abstract void execute() throws RuntimeError;
@@ -45,7 +53,7 @@ public abstract class BaseInstruction
 		return switch (type)
 		{
 			case AddressType.REGISTER -> address;
-			case POINTER -> Main.getRegistry(address);
+			case POINTER -> MachineController.getRegistry(address);
 			default -> 0;
 		};
 	}
