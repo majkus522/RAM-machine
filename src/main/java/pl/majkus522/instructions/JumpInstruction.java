@@ -3,20 +3,22 @@ package pl.majkus522.instructions;
 import pl.majkus522.error.InterpreterError;
 import pl.majkus522.error.RuntimeError;
 
+import static pl.majkus522.MachineController.labels;
 import static pl.majkus522.MachineController.lineIndex;
 
-public class HaltInstruction extends BaseInstruction
+public class JumpInstruction extends BaseInstruction
 {
-	public HaltInstruction(String address) throws InterpreterError
+	final String label;
+
+	public JumpInstruction(String address) throws InterpreterError
 	{
 		super("");
-		if (!address.isEmpty())
-			throw new InterpreterError("HALT command doesn't accept any operands");
+		this.label = address;
 	}
 
 	@Override
 	public void execute() throws RuntimeError
 	{
-		lineIndex = -2;
+		lineIndex = labels.get(label) - 1;
 	}
 }

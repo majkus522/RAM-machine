@@ -1,7 +1,5 @@
 package pl.majkus522.instructions;
 
-import pl.majkus522.AddressType;
-import pl.majkus522.MachineController;
 import pl.majkus522.error.InterpreterError;
 import pl.majkus522.error.RuntimeError;
 
@@ -17,6 +15,6 @@ public class LoadInstruction extends BaseInstruction
     @Override
     public void execute() throws RuntimeError
     {
-        setRegistry(0, type == AddressType.NUMBER ? address : getAddress());
+        setRegistry(0, getValueFromRegistry());
     }
 }

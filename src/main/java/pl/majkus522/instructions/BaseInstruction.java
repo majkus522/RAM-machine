@@ -5,6 +5,8 @@ import pl.majkus522.MachineController;
 import pl.majkus522.error.InterpreterError;
 import pl.majkus522.error.RuntimeError;
 
+import static pl.majkus522.MachineController.getRegistry;
+
 public abstract class BaseInstruction
 {
 	protected AddressType type;
@@ -56,5 +58,10 @@ public abstract class BaseInstruction
 			case POINTER -> MachineController.getRegistry(address);
 			default -> 0;
 		};
+	}
+
+	protected final int getValueFromRegistry() throws RuntimeError
+	{
+		return type == AddressType.NUMBER ? address : getRegistry(getAddress());
 	}
 }
