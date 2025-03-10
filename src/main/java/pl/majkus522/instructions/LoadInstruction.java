@@ -7,14 +7,14 @@ import static pl.majkus522.MachineController.setRegistry;
 
 public class LoadInstruction extends BaseInstruction
 {
-    public LoadInstruction(String address) throws InterpreterError
-    {
-        super(address);
-    }
+	public LoadInstruction(String address) throws InterpreterError
+	{
+		super(address);
+	}
 
-    @Override
-    public void execute() throws RuntimeError
-    {
-        setRegistry(0, getValueFromRegistry());
-    }
+	@Override
+	public void execute() throws RuntimeError
+	{
+		setRegistry(0, getValueFromRegistry());
+	}
 }

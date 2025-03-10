@@ -5,20 +5,17 @@ import pl.majkus522.error.RuntimeError;
 
 import static pl.majkus522.MachineController.*;
 
-public class JzeroInstruction extends BaseInstruction
+public class JzeroInstruction extends JumpInstruction
 {
-	final String label;
-
 	public JzeroInstruction(String address) throws InterpreterError
 	{
-		super("");
-		this.label = address;
+		super(address);
 	}
 
 	@Override
 	public void execute() throws RuntimeError
 	{
 		if (getRegistry(0) == 0)
-			lineIndex = labels.get(label) - 1;
+			super.execute();
 	}
 }
