@@ -5,20 +5,17 @@ import pl.majkus522.rammachine.error.RuntimeError;
 
 import static pl.majkus522.rammachine.MachineController.*;
 
-public class JgtzInstruction extends BaseInstruction
+public class JgtzInstruction extends JumpInstruction
 {
-	final String label;
-
 	public JgtzInstruction(String address) throws InterpreterError
 	{
-		super("");
-		this.label = address;
+		super(address);
 	}
 
 	@Override
 	public void execute() throws RuntimeError
 	{
 		if (getRegistry(0) > 0)
-			lineIndex = labels.get(label) - 1;
+			super.execute();
 	}
 }
