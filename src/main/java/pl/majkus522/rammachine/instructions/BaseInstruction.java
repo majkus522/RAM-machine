@@ -1,11 +1,11 @@
-package pl.majkus522.instructions;
+package pl.majkus522.rammachine.instructions;
 
-import pl.majkus522.AddressType;
-import pl.majkus522.MachineController;
-import pl.majkus522.error.InterpreterError;
-import pl.majkus522.error.RuntimeError;
+import pl.majkus522.rammachine.AddressType;
+import pl.majkus522.rammachine.MachineController;
+import pl.majkus522.rammachine.error.InterpreterError;
+import pl.majkus522.rammachine.error.RuntimeError;
 
-import static pl.majkus522.MachineController.getRegistry;
+import static pl.majkus522.rammachine.MachineController.getRegistry;
 
 public abstract class BaseInstruction
 {

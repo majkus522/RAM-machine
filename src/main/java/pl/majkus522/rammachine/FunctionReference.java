@@ -1,6 +1,6 @@
-package pl.majkus522;
+package pl.majkus522.rammachine;
 
-import pl.majkus522.error.InterpreterError;
+import pl.majkus522.rammachine.error.InterpreterError;
 
 @FunctionalInterface
 public interface FunctionReference<T, R>

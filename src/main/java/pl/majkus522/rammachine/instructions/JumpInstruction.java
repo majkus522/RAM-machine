@@ -1,10 +1,10 @@
-package pl.majkus522.instructions;
+package pl.majkus522.rammachine.instructions;
 
-import pl.majkus522.error.InterpreterError;
-import pl.majkus522.error.RuntimeError;
+import pl.majkus522.rammachine.error.InterpreterError;
+import pl.majkus522.rammachine.error.RuntimeError;
 
-import static pl.majkus522.MachineController.labels;
-import static pl.majkus522.MachineController.lineIndex;
+import static pl.majkus522.rammachine.MachineController.labels;
+import static pl.majkus522.rammachine.MachineController.lineIndex;
 
 public class JumpInstruction extends BaseInstruction
 {

@@ -1,6 +1,6 @@
-package pl.majkus522.error;
+package pl.majkus522.rammachine.error;
 
-import pl.majkus522.MachineController;
+import pl.majkus522.rammachine.MachineController;
 
 public class InterpreterError extends Exception
 {

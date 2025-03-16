@@ -1,8 +1,9 @@
-package pl.majkus522;
+package pl.majkus522.rammachine;
 
-import pl.majkus522.error.InterpreterError;
-import pl.majkus522.error.RuntimeError;
-import pl.majkus522.instructions.*;
+import pl.majkus522.rammachine.error.InterpreterError;
+import pl.majkus522.rammachine.error.RuntimeError;
+import pl.majkus522.rammachine.gui.GuiApplication;
+import pl.majkus522.rammachine.instructions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,6 +85,7 @@ public class MachineController
         System.out.println(registries);
         System.out.println(outputTape);
         System.out.println(labels);
+        GuiApplication.getController().onStop();
     }
 
     public static int readInput() throws RuntimeError
@@ -101,6 +103,11 @@ public class MachineController
         if (addr >= registries.size())
             return 0;
         return registries.get(addr);
+    }
+
+    public static List<Integer> getRegistries()
+    {
+        return registries;
     }
 
     public static void setRegistry(int addr, int value) throws RuntimeError
