@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,10 +14,14 @@ import java.util.List;
 
 public class GuiController
 {
-	@FXML protected FlowPane inputTape;
-	@FXML protected FlowPane outputTape;
-	@FXML protected TextArea textArea;
-	@FXML protected VBox registries;
+	@FXML
+	protected FlowPane inputTape;
+	@FXML
+	protected FlowPane outputTape;
+	@FXML
+	protected TextArea textArea;
+	@FXML
+	protected VBox registries;
 
 	@FXML
 	protected void onPlayButton()

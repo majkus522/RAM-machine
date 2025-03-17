@@ -16,6 +16,6 @@ public class DivInstruction extends BaseInstruction
 	@Override
 	public void execute() throws RuntimeError
 	{
-		setRegistry(0, (int)(getRegistry(0) / getValueFromRegistry()));
+		setRegistry(0, (int) (getRegistry(0) / getValueFromRegistry()));
 	}
 }

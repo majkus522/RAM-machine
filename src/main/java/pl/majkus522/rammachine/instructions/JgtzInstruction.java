@@ -3,7 +3,7 @@ package pl.majkus522.rammachine.instructions;
 import pl.majkus522.rammachine.error.InterpreterError;
 import pl.majkus522.rammachine.error.RuntimeError;
 
-import static pl.majkus522.rammachine.MachineController.*;
+import static pl.majkus522.rammachine.MachineController.getRegistry;
 
 public class JgtzInstruction extends JumpInstruction
 {
