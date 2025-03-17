@@ -13,11 +13,11 @@ public class MachineController
 {
     static List<BaseInstruction> instructions = new ArrayList<>();
     static HashMap<String, FunctionReference<String, BaseInstruction>> interpreter = new HashMap<>();
-    public static List<Integer> inputTape = new ArrayList<>();
+    static List<Integer> inputTape = new ArrayList<>();
     static List<Integer> outputTape = new ArrayList<>();
     static List<Integer> registries = new ArrayList<>();
-    public static HashMap<String, Integer> labels = new HashMap<>();
-    public static int lineIndex;
+    static HashMap<String, Integer> labels = new HashMap<>();
+    static int lineIndex;
     static int inputAddr = -1;
 
     public static void init()
@@ -56,6 +56,8 @@ public class MachineController
                 int index = line.indexOf(" ");
                 if (index < 0)
                     index = line.length();
+
+                //TODO: fix null pointer exception
                 try
                 {
                     instructions.add(interpreter.get(line.substring(0, index).toLowerCase()).apply(line.substring(index).trim()));
@@ -72,20 +74,15 @@ public class MachineController
                     break;
                 instructions.get(lineIndex).execute();
             }
+            GuiApplication.getController().display();
         }
-        catch (RuntimeError e)
+        catch (RuntimeError | InterpreterError e)
         {
             e.printStackTrace();
         }
-        catch (InterpreterError e)
-        {
-            e.printStackTrace();
-        }
-
-        System.out.println(registries);
+	    System.out.println(registries);
         System.out.println(outputTape);
         System.out.println(labels);
-        GuiApplication.getController().onStop();
     }
 
     public static int readInput() throws RuntimeError
@@ -122,5 +119,15 @@ public class MachineController
     public static void writeOutput(int value)
     {
         outputTape.add(value);
+    }
+
+    public static int getLineIndex()
+    {
+        return lineIndex;
+    }
+
+    public static void goTo(String label)
+    {
+        lineIndex = labels.get(label) - 1;
     }
 }

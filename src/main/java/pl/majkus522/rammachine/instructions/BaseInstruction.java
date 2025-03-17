@@ -44,12 +44,6 @@ public abstract class BaseInstruction
 
 	public abstract void execute() throws RuntimeError;
 
-	@Override
-	public String toString()
-	{
-		return "BaseInstruction{" + "type=" + type + ", address=" + address + '}';
-	}
-
 	protected final int getAddress() throws RuntimeError
 	{
 		return switch (type)

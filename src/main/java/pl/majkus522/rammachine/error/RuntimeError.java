@@ -2,18 +2,12 @@ package pl.majkus522.rammachine.error;
 
 import pl.majkus522.rammachine.MachineController;
 
+import static pl.majkus522.rammachine.MachineController.getLineIndex;
+
 public class RuntimeError extends Exception
 {
-	final String message;
-
 	public RuntimeError(String message)
 	{
-		this.message = message;
-	}
-
-	@Override
-	public String getMessage()
-	{
-		return message + "\r\nLine: " + MachineController.lineIndex;
+		super(message + "\r\nLine: " + getLineIndex());
 	}
 }

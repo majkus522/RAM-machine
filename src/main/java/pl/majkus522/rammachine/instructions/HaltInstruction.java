@@ -3,7 +3,6 @@ package pl.majkus522.rammachine.instructions;
 import pl.majkus522.rammachine.error.InterpreterError;
 import pl.majkus522.rammachine.error.RuntimeError;
 
-import static pl.majkus522.rammachine.MachineController.lineIndex;
 
 public class HaltInstruction extends BaseInstruction
 {
@@ -17,6 +16,6 @@ public class HaltInstruction extends BaseInstruction
 	@Override
 	public void execute() throws RuntimeError
 	{
-		lineIndex = -2;
+
 	}
 }

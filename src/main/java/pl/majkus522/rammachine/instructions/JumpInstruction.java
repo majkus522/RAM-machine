@@ -3,8 +3,7 @@ package pl.majkus522.rammachine.instructions;
 import pl.majkus522.rammachine.error.InterpreterError;
 import pl.majkus522.rammachine.error.RuntimeError;
 
-import static pl.majkus522.rammachine.MachineController.labels;
-import static pl.majkus522.rammachine.MachineController.lineIndex;
+import static pl.majkus522.rammachine.MachineController.goTo;
 
 public class JumpInstruction extends BaseInstruction
 {
@@ -19,6 +18,6 @@ public class JumpInstruction extends BaseInstruction
 	@Override
 	public void execute() throws RuntimeError
 	{
-		lineIndex = labels.get(label) - 1;
+		goTo(label);
 	}
 }

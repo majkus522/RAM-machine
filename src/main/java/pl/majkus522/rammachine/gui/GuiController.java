@@ -53,7 +53,7 @@ public class GuiController
 			inputTape.getChildren().removeLast();
 	}
 
-	public void onStop()
+	public void display()
 	{
 		List<Node> children = registries.getChildren();
 		children.clear();
