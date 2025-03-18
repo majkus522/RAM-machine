@@ -7,11 +7,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-//TODO: add file menu
 public class GuiApplication extends Application
 {
 	static GuiController controller;
+
+	public static void start()
+	{
+		launch();
+	}
+
+	public static GuiController getController()
+	{
+		return controller;
+	}
 
 	@Override
 	public void start(Stage stage) throws IOException
@@ -24,15 +32,5 @@ public class GuiApplication extends Application
 		stage.setMinWidth(1280);
 		stage.setMinHeight(720);
 		stage.show();
-	}
-
-	public static void start()
-	{
-		launch();
-	}
-
-	public static GuiController getController()
-	{
-		return controller;
 	}
 }

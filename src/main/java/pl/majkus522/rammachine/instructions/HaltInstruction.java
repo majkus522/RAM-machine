@@ -1,22 +1,20 @@
 package pl.majkus522.rammachine.instructions;
 
-import pl.majkus522.rammachine.error.InterpreterError;
-import pl.majkus522.rammachine.error.RuntimeError;
+import pl.majkus522.rammachine.RMerror;
 
 
 public class HaltInstruction extends BaseInstruction
 {
-	public HaltInstruction(String address) throws InterpreterError
+	public HaltInstruction(String address) throws RMerror
 	{
 		super("");
 		if (!address.isEmpty())
-			throw new InterpreterError("HALT command doesn't accept any operands");
+			throw new RMerror("HALT command doesn't accept any operands");
 	}
 
-	//TODO: fix halt
 	@Override
-	public void execute() throws RuntimeError
+	public void execute() throws RMerror
 	{
-
+		throw new RMerror(true);
 	}
 }

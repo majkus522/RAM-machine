@@ -1,0 +1,35 @@
+*
+{
+	-fx-background-color: #454545;
+	-fx-border-radius: 0;
+	-fx-font: 15px Tahoma;
+    -fx-fill: white;
+}
+
+.button
+{
+	-fx-background-color: blue;
+}
+
+.button:disabled
+{
+	-fx-background-color: gray;
+}
+
+.pane
+{
+	-fx-border-color: white;
+}
+
+.text-field
+{
+	-fx-border-color: white;
+	-fx-text-fill: white;
+	-fx-alignment: center;
+}
+
+.text-area
+{
+	-fx-border-color: white;
+	-fx-text-fill: white;
+}

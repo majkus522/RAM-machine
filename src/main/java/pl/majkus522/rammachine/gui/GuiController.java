@@ -3,6 +3,7 @@ package pl.majkus522.rammachine.gui;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
@@ -24,31 +25,49 @@ public class GuiController
 	@FXML
 	protected VBox registries;
 	@FXML
-	protected IntField inputCount;
+	protected Button stopButton;
+
+	boolean stepByStep = false;
 
 	@FXML
 	protected void onPlayButton()
 	{
-		List<Integer> input = new ArrayList<>();
-		for (Node node : inputTape.getChildren())
+		if (!stepByStep)
 		{
-			input.add(((IntField)node).getValue());
+			List<Integer> input = new ArrayList<>();
+			for (Node node : inputTape.getChildren())
+			{
+				input.add(((IntField) node).getValue());
+			}
+			MachineController.passData(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
 		}
-		MachineController.data(input);
-		MachineController.runAll(textArea.getParagraphs().stream().map(v -> v.toString()).toList());
+		MachineController.runAll();
+		stepByStep = false;
+		stopButton.setDisable(true);
 	}
 
 	@FXML
 	protected void onStepButton()
 	{
-
-
+		if (!stepByStep)
+		{
+			List<Integer> input = new ArrayList<>();
+			for (Node node : inputTape.getChildren())
+			{
+				input.add(((IntField) node).getValue());
+			}
+			MachineController.passData(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
+		}
+		MachineController.runStep();
+		stepByStep = true;
+		stopButton.setDisable(!stepByStep);
 	}
 
 	@FXML
 	protected void onStopButton()
 	{
-		System.out.println("stop");
+		stopButton.setDisable(true);
+		stepByStep = false;
 	}
 
 	@FXML
@@ -93,5 +112,6 @@ public class GuiController
 			field.setEditable(false);
 			outputChildren.add(field);
 		}
+		stopButton.setDisable(false);
 	}
 }

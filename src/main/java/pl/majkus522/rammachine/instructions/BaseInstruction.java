@@ -2,8 +2,7 @@ package pl.majkus522.rammachine.instructions;
 
 import pl.majkus522.rammachine.AddressType;
 import pl.majkus522.rammachine.MachineController;
-import pl.majkus522.rammachine.error.InterpreterError;
-import pl.majkus522.rammachine.error.RuntimeError;
+import pl.majkus522.rammachine.RMerror;
 
 import static pl.majkus522.rammachine.MachineController.getRegistry;
 
@@ -12,7 +11,7 @@ public abstract class BaseInstruction
 	protected AddressType type;
 	protected int address;
 
-	public BaseInstruction(String address) throws InterpreterError
+	public BaseInstruction(String address) throws RMerror
 	{
 		if (address.isEmpty())
 			return;
@@ -38,13 +37,13 @@ public abstract class BaseInstruction
 		}
 		catch (NumberFormatException e)
 		{
-			throw new InterpreterError("Not a number");
+			throw new RMerror("Not a number");
 		}
 	}
 
-	public abstract void execute() throws RuntimeError;
+	public abstract void execute() throws RMerror;
 
-	protected final int getAddress() throws RuntimeError
+	protected final int getAddress() throws RMerror
 	{
 		return switch (type)
 		{
@@ -54,7 +53,7 @@ public abstract class BaseInstruction
 		};
 	}
 
-	protected final int getValueFromRegistry() throws RuntimeError
+	protected final int getValueFromRegistry() throws RMerror
 	{
 		return type == AddressType.NUMBER ? address : getRegistry(getAddress());
 	}

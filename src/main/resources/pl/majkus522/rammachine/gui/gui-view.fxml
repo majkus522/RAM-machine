@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import pl.majkus522.rammachine.gui.IntField?>
-<VBox alignment="CENTER" minHeight="720.0" minWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.majkus522.rammachine.gui.GuiController">
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" minHeight="720.0" minWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="pl.majkus522.rammachine.gui.GuiController">
 	<children>
 		<GridPane VBox.vgrow="ALWAYS">
 			<columnConstraints>
@@ -27,21 +19,25 @@
 				<RowConstraints vgrow="NEVER"/>
 			</rowConstraints>
 			<children>
-				<FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+				<FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" styleClass="pane" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
 					<children>
 						<Button mnemonicParsing="false" onAction="#onPlayButton" text="Play"/>
 						<Button mnemonicParsing="false" onAction="#onStepButton" text="Step"/>
-						<Button mnemonicParsing="false" onAction="#onStopButton" text="Stop"/>
+						<Button mnemonicParsing="false" onAction="#onStopButton" text="Stop" disable="true" fx:id="stopButton"/>
 					</children>
 					<padding>
 						<Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
 					</padding>
+					<GridPane.margin>
+						<Insets bottom="10.0"/>
+					</GridPane.margin>
 				</FlowPane>
-				<GridPane GridPane.rowIndex="1">
+				<GridPane styleClass="pane" GridPane.rowIndex="1">
 					<columnConstraints>
 						<ColumnConstraints/>
 						<ColumnConstraints halignment="LEFT" hgrow="NEVER"/>
 						<ColumnConstraints halignment="LEFT" hgrow="NEVER"/>
+						<ColumnConstraints/>
 					</columnConstraints>
 					<rowConstraints>
 						<RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
@@ -51,7 +47,7 @@
 							<content>
 								<FlowPane fx:id="inputTape" alignment="CENTER_LEFT" columnHalignment="CENTER" orientation="VERTICAL" prefWrapLength="0.0" style="-fx-background-color: transparent;" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
 									<children>
-										<IntField nodeOrientation="LEFT_TO_RIGHT" prefWidth="60.0" value="0"/>
+										<IntField nodeOrientation="LEFT_TO_RIGHT" prefWidth="60.0"/>
 									</children>
 								</FlowPane>
 							</content>
@@ -68,7 +64,7 @@
 						</Button>
 					</children>
 				</GridPane>
-				<GridPane GridPane.rowIndex="3">
+				<GridPane styleClass="pane" GridPane.rowIndex="3">
 					<columnConstraints>
 						<ColumnConstraints/>
 					</columnConstraints>
@@ -85,7 +81,7 @@
 						</ScrollPane>
 					</children>
 				</GridPane>
-				<GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+				<GridPane GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3">
 					<columnConstraints>
 						<ColumnConstraints hgrow="ALWAYS"/>
 					</columnConstraints>
@@ -95,13 +91,10 @@
 					<children>
 						<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" nodeOrientation="LEFT_TO_RIGHT" GridPane.halignment="RIGHT" GridPane.hgrow="SOMETIMES" GridPane.vgrow="ALWAYS">
 							<content>
-								<VBox alignment="TOP_RIGHT" fx:id="registries">
+								<VBox fx:id="registries" alignment="TOP_RIGHT" styleClass="pane">
 									<children>
 										<HBox alignment="CENTER" spacing="10.0" VBox.vgrow="NEVER">
-											<children>
-												<Label alignment="CENTER" text="Rejestr 0" textAlignment="CENTER" HBox.hgrow="ALWAYS"/>
-												<IntField prefWidth="60.0" editable="false"/>
-											</children>
+											<children></children>
 											<padding>
 												<Insets bottom="2.0" left="5.0" right="5.0" top="2.0"/>
 											</padding>
@@ -118,7 +111,11 @@
 						</ScrollPane>
 					</children>
 				</GridPane>
-				<TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" fx:id="textArea"/>
+				<TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+					<GridPane.margin>
+						<Insets bottom="20.0" right="20.0" top="20.0"/>
+					</GridPane.margin>
+				</TextArea>
 			</children>
 		</GridPane>
 	</children>
