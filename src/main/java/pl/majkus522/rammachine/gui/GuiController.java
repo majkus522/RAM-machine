@@ -23,6 +23,8 @@ public class GuiController
 	protected TextArea textArea;
 	@FXML
 	protected VBox registries;
+	@FXML
+	protected IntField inputCount;
 
 	@FXML
 	protected void onPlayButton()
@@ -32,13 +34,15 @@ public class GuiController
 		{
 			input.add(((IntField)node).getValue());
 		}
-		MachineController.runProgram(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
+		MachineController.data(input);
+		MachineController.runAll(textArea.getParagraphs().stream().map(v -> v.toString()).toList());
 	}
 
 	@FXML
 	protected void onStepButton()
 	{
-		System.out.println("stop");
+
+
 	}
 
 	@FXML
@@ -50,7 +54,7 @@ public class GuiController
 	@FXML
 	protected void onAddInput()
 	{
-		IntField input = new IntField();
+		IntField input = new IntField(0);
 		input.setPrefWidth(60);
 		inputTape.getChildren().add(input);
 	}
@@ -62,11 +66,12 @@ public class GuiController
 			inputTape.getChildren().removeLast();
 	}
 
-	public void display()
+	public void display(List<Integer> registries, List<Integer> output)
 	{
-		List<Node> children = registries.getChildren();
-		children.clear();
-		List<Integer> registries = MachineController.getRegistries();
+		List<Node> regChildren = this.registries.getChildren();
+		List<Node> outputChildren = this.outputTape.getChildren();
+		regChildren.clear();
+		outputChildren.clear();
 		for (int index = 0; index < registries.size(); index++)
 		{
 			HBox parent = new HBox();
@@ -75,12 +80,18 @@ public class GuiController
 			Label label = new Label();
 			label.setText("Registry " + index);
 			parent.getChildren().add(label);
-			IntField value = new IntField();
-			value.setValue(registries.get(index));
+			IntField value = new IntField(registries.get(index));
 			value.setPrefWidth(60);
 			value.setEditable(false);
 			parent.getChildren().add(value);
-			children.add(parent);
+			regChildren.add(parent);
+		}
+		for (int value : output)
+		{
+			IntField field = new IntField(value);
+			field.setPrefWidth(60);
+			field.setEditable(false);
+			outputChildren.add(field);
 		}
 	}
 }

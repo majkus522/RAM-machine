@@ -4,6 +4,16 @@ import javafx.scene.control.TextField;
 
 public class IntField extends TextField
 {
+	public IntField()
+	{
+		this(0);
+	}
+
+	public IntField(int value)
+	{
+		setValue(value);
+	}
+
 	@Override
 	public void replaceText(int start, int end, String text)
 	{
@@ -24,7 +34,7 @@ public class IntField extends TextField
 
 	private boolean validate(String text)
 	{
-		return text.matches("[0-9]*");
+		return text.matches("[0-9\r\n]*");
 	}
 
 	public int getValue()
