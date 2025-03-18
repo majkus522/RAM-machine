@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
+//TODO: add file menu
 public class GuiApplication extends Application
 {
 	static GuiController controller;

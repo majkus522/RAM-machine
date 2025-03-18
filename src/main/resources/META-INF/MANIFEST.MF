@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Main-Class: pl.majkus522.rammachine.Main

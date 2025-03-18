@@ -36,10 +36,19 @@ public class MachineController
 		interpreter.put("halt", HaltInstruction::new);
 	}
 
-	public static void runProgram(List<String> input)
+	public static void runProgram(List<String> input, List<Integer> tape)
 	{
 		try
 		{
+			inputTape = tape;
+			registries = new ArrayList<>();
+			labels = new HashMap<>();
+			instructions = new ArrayList<>();
+			inputAddr = -1;
+			lineIndex = 0;
+			outputTape = new ArrayList<>();
+
+			// TODO: add commnets
 			for (String line : input)
 			{
 				line = line.trim();

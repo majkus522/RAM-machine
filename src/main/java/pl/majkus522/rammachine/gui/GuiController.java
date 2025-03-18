@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import pl.majkus522.rammachine.MachineController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuiController
@@ -26,7 +27,12 @@ public class GuiController
 	@FXML
 	protected void onPlayButton()
 	{
-		MachineController.runProgram(textArea.getParagraphs().stream().map(v -> v.toString()).toList());
+		List<Integer> input = new ArrayList<>();
+		for (Node node : inputTape.getChildren())
+		{
+			input.add(((IntField)node).getValue());
+		}
+		MachineController.runProgram(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
 	}
 
 	@FXML

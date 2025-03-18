@@ -13,6 +13,7 @@ public class HaltInstruction extends BaseInstruction
 			throw new InterpreterError("HALT command doesn't accept any operands");
 	}
 
+	//TODO: fix halt
 	@Override
 	public void execute() throws RuntimeError
 	{

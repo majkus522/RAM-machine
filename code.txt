@@ -1,0 +1,62 @@
+read 0
+mult =2
+mult =314
+div =100
+write 0
+halt
+
+LOAD =0 
+ STORE 1 
+ READ 0
+ loop: JZERO loop_end 
+ ADD 1 
+ STORE 1 
+ READ 0
+ JUMP loop
+loop_end: WRITE 1
+HALT
+
+read 1
+load =0
+store 2
+loop:	read 0
+		jzero end
+		sub 1
+		jzero add
+		jump loop
+		
+add:		load 2
+		add =1
+		store 2
+		jump loop
+
+end:		write 2
+		halt
+		
+read 0
+jzero zerod
+store 1
+read 0
+jzero zerou
+store 2
+load =1
+store 3
+
+loop:	load 3
+		mult 1
+		store 3
+		load 2
+		sub =1
+		jzero end
+		store 2
+		jump loop
+
+end:		write 3
+		halt
+
+zerou:	write =1
+		halt
+
+zerod:	write 0
+		halt
+
