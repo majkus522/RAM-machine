@@ -1,5 +1,16 @@
 package pl.majkus522.rammachine;
 
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pl.majkus522.rammachine.error.InterpreterError;
 import pl.majkus522.rammachine.error.RuntimeError;
 import pl.majkus522.rammachine.gui.GuiApplication;
@@ -36,18 +47,21 @@ public class MachineController
 		interpreter.put("halt", HaltInstruction::new);
 	}
 
-	public static void runProgram(List<String> input, List<Integer> tape)
+	public static void data(List<Integer> tape)
+	{
+		inputTape = tape;
+		registries = new ArrayList<>();
+		labels = new HashMap<>();
+		instructions = new ArrayList<>();
+		inputAddr = -1;
+		lineIndex = 0;
+		outputTape = new ArrayList<>();
+	}
+
+	public static void runAll(List<String> input)
 	{
 		try
 		{
-			inputTape = tape;
-			registries = new ArrayList<>();
-			labels = new HashMap<>();
-			instructions = new ArrayList<>();
-			inputAddr = -1;
-			lineIndex = 0;
-			outputTape = new ArrayList<>();
-
 			// TODO: add commnets
 			for (String line : input)
 			{
@@ -83,43 +97,53 @@ public class MachineController
 					break;
 				instructions.get(lineIndex).execute();
 			}
-			GuiApplication.getController().display();
+			GuiApplication.getController().display(registries, outputTape);
 		}
 		catch (RuntimeError | InterpreterError e)
 		{
-			e.printStackTrace();
+			Stage dialogStage = new Stage();
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			Text text = new Text(e.getMessage());
+			text.setTextAlignment(TextAlignment.CENTER);
+			Button button = new Button("Ok");
+			button.setOnMouseClicked(new EventHandler<MouseEvent>()
+			{
+				@Override
+				public void handle(MouseEvent mouseEvent)
+				{
+					dialogStage.close();
+				}
+			});
+			VBox vbox = new VBox(text, button);
+			vbox.setAlignment(Pos.CENTER);
+			vbox.setPadding(new Insets(15, 50, 15, 50));
+			vbox.setSpacing(10);
+			dialogStage.setScene(new Scene(vbox));
+			dialogStage.show();
 		}
-		System.out.println(registries);
-		System.out.println(outputTape);
-		System.out.println(labels);
 	}
 
 	public static int readInput() throws RuntimeError
 	{
 		inputAddr++;
 		if (inputAddr >= inputTape.size())
-			return 0;
+			throw new RuntimeError("Input tape ended");
 		return inputTape.get(inputAddr);
 	}
 
 	public static int getRegistry(int addr) throws RuntimeError
 	{
 		if (addr < 0)
-			throw new RuntimeError("Registry index can't be lesser than 0");
+			throw new RuntimeError("Registry index can't be lower than 0");
 		if (addr >= registries.size())
 			return 0;
 		return registries.get(addr);
 	}
 
-	public static List<Integer> getRegistries()
-	{
-		return registries;
-	}
-
 	public static void setRegistry(int addr, int value) throws RuntimeError
 	{
 		if (addr < 0)
-			throw new RuntimeError("Registry index can't be lesser than 0");
+			throw new RuntimeError("Registry index can't be lower than 0");
 		while (registries.size() < addr + 1)
 			registries.add(0);
 		registries.set(addr, value);
