@@ -9,7 +9,7 @@ public class HaltInstruction extends BaseInstruction
 	{
 		super("");
 		if (!address.isEmpty())
-			throw new RMerror("HALT command doesn't accept any operands");
+			throw new RMerror("Polecenie HALT nie akceptuje rzadnych operandów");
 	}
 
 	@Override

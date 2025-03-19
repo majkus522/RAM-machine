@@ -12,7 +12,7 @@ public class StoreInstruction extends BaseInstruction
 	{
 		super(address);
 		if (type == AddressType.NUMBER)
-			throw new RMerror("Can't use = operand in STORE command");
+			throw new RMerror("Nie możesz użyć '=' dla polecenia STORE");
 	}
 
 	@Override

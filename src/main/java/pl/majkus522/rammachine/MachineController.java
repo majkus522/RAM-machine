@@ -128,7 +128,7 @@ public class MachineController
 				continue;
 			String[] split = line.split(":");
 			if (split.length > 2)
-				throw new RMerror("Illegal use of ':'");
+				throw new RMerror("Nieodpowiednie użycie ':'");
 			else if (split.length == 2)
 			{
 				labels.put(split[0].trim(), lineIndex);
@@ -139,7 +139,7 @@ public class MachineController
 				index = line.length();
 			FunctionReference<String, BaseInstruction> constructor = interpreter.get(line.substring(0, index).toLowerCase());
 			if (constructor == null)
-				throw new RMerror("Unknown command");
+				throw new RMerror("Nieznane polecenie");
 			instructions.add(constructor.apply(line.substring(index).trim()));
 			lineIndex++;
 		}
@@ -149,14 +149,14 @@ public class MachineController
 	{
 		inputAddr++;
 		if (inputAddr >= inputTape.size())
-			throw new RMerror("Input tape ended");
+			throw new RMerror("Taśma wejściowa się skończyła");
 		return inputTape.get(inputAddr);
 	}
 
 	public static int getRegistry(int addr) throws RMerror
 	{
 		if (addr < 0)
-			throw new RMerror("Registry index can't be lower than 0");
+			throw new RMerror("Numer indeksu rejestru nie może być mniejszy niż 0");
 		if (addr >= registries.size())
 			return 0;
 		return registries.get(addr);
@@ -165,7 +165,7 @@ public class MachineController
 	public static void setRegistry(int addr, int value) throws RMerror
 	{
 		if (addr < 0)
-			throw new RMerror("Registry index can't be lower than 0");
+			throw new RMerror("Numer indeksu rejestru nie może być mniejszy niż 0");
 		while (registries.size() < addr + 1)
 			registries.add(0);
 		registries.set(addr, value);

@@ -12,7 +12,7 @@ public class ReadInstruction extends BaseInstruction
 	{
 		super(address);
 		if (type == AddressType.NUMBER)
-			throw new RMerror("Can't use = operand in READ command");
+			throw new RMerror("Nie możesz użyć '=' dla polecenia READ");
 	}
 
 	@Override

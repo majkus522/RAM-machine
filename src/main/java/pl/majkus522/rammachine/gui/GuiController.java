@@ -97,7 +97,7 @@ public class GuiController
 			parent.setAlignment(Pos.CENTER);
 			parent.setSpacing(10);
 			Label label = new Label();
-			label.setText("Registry " + index);
+			label.setText("Rejestr " + index);
 			parent.getChildren().add(label);
 			IntField value = new IntField(registries.get(index));
 			value.setPrefWidth(60);

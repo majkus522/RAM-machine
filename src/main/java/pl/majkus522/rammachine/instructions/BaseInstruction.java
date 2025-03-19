@@ -37,7 +37,7 @@ public abstract class BaseInstruction
 		}
 		catch (NumberFormatException e)
 		{
-			throw new RMerror("Not a number");
+			throw new RMerror("To nie jest liczba");
 		}
 	}
 
