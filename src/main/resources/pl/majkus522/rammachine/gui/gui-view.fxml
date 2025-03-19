@@ -27,6 +27,7 @@
 			<Button mnemonicParsing="false" onAction="#onPlayButton" text="Play"/>
 			<Button mnemonicParsing="false" onAction="#onStepButton" text="Step"/>
 			<Button mnemonicParsing="false" onAction="#onStopButton" text="Stop" disable="true" fx:id="stopButton"/>
+			<Label fx:id="programCounter"></Label>
 		</FlowPane>
 		<GridPane styleClass="pane" GridPane.rowIndex="1">
 			<columnConstraints>

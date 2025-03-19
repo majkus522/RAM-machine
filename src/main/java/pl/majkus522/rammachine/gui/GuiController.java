@@ -26,6 +26,8 @@ public class GuiController
 	protected VBox registries;
 	@FXML
 	protected Button stopButton;
+	@FXML
+	protected Label programCounter;
 
 	boolean stepByStep = false;
 
@@ -113,5 +115,15 @@ public class GuiController
 			outputChildren.add(field);
 		}
 		stopButton.setDisable(false);
+	}
+
+	public void setPC(int index)
+	{
+		programCounter.setText("\t" + index);
+	}
+
+	public void stopPC()
+	{
+		programCounter.setText("");
 	}
 }

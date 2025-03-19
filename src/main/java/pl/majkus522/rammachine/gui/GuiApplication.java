@@ -29,8 +29,8 @@ public class GuiApplication extends Application
 		controller = fxmlLoader.getController();
 		stage.setTitle("RAM Machine");
 		stage.setScene(scene);
-		stage.setMinWidth(1280);
-		stage.setMinHeight(720);
+		stage.setMinWidth(940);
+		stage.setMinHeight(480);
 		stage.show();
 	}
 }

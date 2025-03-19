@@ -10,6 +10,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.majkus522.rammachine.gui.GuiApplication;
+import pl.majkus522.rammachine.gui.GuiController;
 import pl.majkus522.rammachine.instructions.*;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class MachineController
 	static HashMap<String, Integer> labels = new HashMap<>();
 	static int lineIndex;
 	static int inputAddr = -1;
+	static GuiController guiController;
 
 	public static void init()
 	{
@@ -55,6 +57,7 @@ public class MachineController
 			outputTape = new ArrayList<>();
 			interpre(input);
 			lineIndex = 0;
+			guiController = GuiApplication.getController();
 		}
 		catch (RMerror e)
 		{
@@ -72,7 +75,8 @@ public class MachineController
 					break;
 				instructions.get(lineIndex).execute();
 			}
-			GuiApplication.getController().display(registries, outputTape);
+			guiController.display(registries, outputTape);
+			guiController.stopPC();
 		}
 		catch (RMerror e)
 		{
@@ -86,12 +90,14 @@ public class MachineController
 		{
 			if (lineIndex >= instructions.size())
 			{
-				GuiApplication.getController().display(registries, outputTape);
+				guiController.display(registries, outputTape);
+				guiController.stopPC();
 				return;
 			}
 			instructions.get(lineIndex).execute();
 			lineIndex++;
-			GuiApplication.getController().display(registries, outputTape);
+			guiController.display(registries, outputTape);
+			guiController.setPC(lineIndex);
 
 		}
 		catch (RMerror e)
@@ -103,7 +109,10 @@ public class MachineController
 	static void openError(RMerror e)
 	{
 		if (e.isHalt())
+		{
+			guiController.display(registries, outputTape);
 			return;
+		}
 		Stage dialogStage = new Stage();
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		Text text = new Text(e.getMessage());
@@ -116,7 +125,6 @@ public class MachineController
 		vbox.setSpacing(10);
 		dialogStage.setScene(new Scene(vbox));
 		dialogStage.show();
-		GuiApplication.getController().display(registries, outputTape);
 	}
 
 	static void interpre(List<String> input) throws RMerror
