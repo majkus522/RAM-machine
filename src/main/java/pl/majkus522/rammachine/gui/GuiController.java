@@ -39,7 +39,7 @@ public class GuiController
 			{
 				input.add(((IntField) node).getValue());
 			}
-			MachineController.passData(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
+			MachineController.passData(textArea.getParagraphs().stream().map(CharSequence::toString).toList(), input);
 		}
 		MachineController.runAll();
 		stepByStep = false;
@@ -56,11 +56,11 @@ public class GuiController
 			{
 				input.add(((IntField) node).getValue());
 			}
-			MachineController.passData(textArea.getParagraphs().stream().map(v -> v.toString()).toList(), input);
+			MachineController.passData(textArea.getParagraphs().stream().map(CharSequence::toString).toList(), input);
 		}
 		MachineController.runStep();
 		stepByStep = true;
-		stopButton.setDisable(!stepByStep);
+		stopButton.setDisable(false);
 	}
 
 	@FXML

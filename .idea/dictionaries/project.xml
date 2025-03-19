@@ -2,6 +2,13 @@
   <dictionary name="project">
     <words>
       <w>addr</w>
+      <w>dziel</w>
+      <w>interpre</w>
+      <w>jgtz</w>
+      <w>jzero</w>
+      <w>merror</w>
+      <w>mult</w>
+      <w>przez</w>
       <w>rammachine</w>
     </words>
   </dictionary>

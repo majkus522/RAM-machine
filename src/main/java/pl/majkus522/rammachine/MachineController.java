@@ -1,11 +1,9 @@
 package pl.majkus522.rammachine;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -111,14 +109,7 @@ public class MachineController
 		Text text = new Text(e.getMessage());
 		text.setTextAlignment(TextAlignment.CENTER);
 		Button button = new Button("Ok");
-		button.setOnMouseClicked(new EventHandler<MouseEvent>()
-		{
-			@Override
-			public void handle(MouseEvent mouseEvent)
-			{
-				dialogStage.close();
-			}
-		});
+		button.setOnMouseClicked((_) -> dialogStage.close());
 		VBox vbox = new VBox(text, button);
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(15, 50, 15, 50));
@@ -133,7 +124,7 @@ public class MachineController
 		for (String line : input)
 		{
 			line = line.split("#")[0].trim();
-			if (line.length() == 0)
+			if (line.isEmpty())
 				continue;
 			String[] split = line.split(":");
 			if (split.length > 2)
